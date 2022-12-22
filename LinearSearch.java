@@ -32,7 +32,7 @@ public class LinearSearch {
 		}
 		if(pos!=-1)
 		{
-			System.out.println(key+ "found at "+(pos+1)+"position");
+			System.out.println(key+ "found at "+(pos+1)+" position");
 		}
 		else
 			System.out.println("Element not found in this array");
