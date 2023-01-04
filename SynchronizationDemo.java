@@ -1,68 +1,72 @@
-package multithreading;
+package ExceptionHandeling;
 //shared resource
-class Product
+class Productt
 {
-	synchronized void PrintProduct(int n) //synchronize
-	{
-		for(int i=1;i<=5;i++)
-		{
-			System.out.println(Thread.currentThread().getName()+""+n*i);
-			
-			try
-			{
-				Thread.sleep(500);
-			}
-			
-			catch(Exception e)
-			{
-				System.out.println(e);
-			}
-			
-		}//loop
-		
-	} //method
 	
-} //class
-
-//first thread
-
-class FirstThread extends Thread
+static synchronized void printPrduct(int n)  // synchronize
 {
-	Product p;
-	FirstThread(Product p)
-	{
-		this.p=p;
-	}
-	public void run()
-	{
-		p.PrintProduct(5);
-	}
-}
-class SecondThread extends Thread
+	 System.out.println("out of synchronization block");
+
+	
+for(int i=1;i<=5;i++)	
 {
-	Product p;
-	SecondThread(Product p)
-	{
-		this.p=p;
-	}
-	public void run()
-	{
-		p.PrintProduct(50);
-	}
+	
+System.out.println(Thread.currentThread().getName()+" "+n*i);
+
+try {
+	Thread.sleep(500);
+	
+}catch (Exception e) {
+	System.out.println(e);
 }
+
+}//loop
+
+
+System.out.println("end of method");
+}//method
+
+}//class
+
+
 public class SynchronizationDemo {
 
 	public static void main(String[] args) {
-		
-   //shared resource
-    Product obj=new Product();
-	FirstThread first=new FirstThread(obj);
-	SecondThread second=new SecondThread(obj);
-	first.setName("first Thread");
-	second.setName("second Thread");
 	
-	first.start();
-	second.start();
+		//shared resource
+		//Product obj=new Product(); //lock associated with object
+		//Product obj1=new Product();
+		//these two thread are acquires product class lock
+	     new Thread("t1")
+				{
+			public void run() {
+				Productt.printPrduct(5); //lock associated with class
+			}
+				}.start();
+				
+				new Thread("t2")
+						{
+					public void run() {
+						Productt.printPrduct(200);
+					}
+						}.start();
+						
+						
+						//these two thread are acquires Addition class lock
+						new Thread("t3")
+						{
+					public void run() {
+						Productt.printPrduct(500);
+					}
+						}.start();
+						
+						new Thread("t4")
+						{
+					public void run() {
+						Productt.printPrduct(1000);
+					}
+						}.start();
+	
 	}
 
 }
