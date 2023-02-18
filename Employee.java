@@ -1,54 +1,69 @@
-package collection;
+package com.hibe;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employee_details")
 public class Employee {
-	private int empId;
-	private String empName;
-	private double salary;
-	
-	public Employee() {
-		super();
-		
-	}
-	
-	public Employee(int empId, String empName, double salary) {
-		super();
-		this.empId = empId;
-		this.empName = empName;
-		this.salary = salary;
-	}
-	
-	public void setEmpId(int empId) {
-		this.empId = empId;
-	}
+@Id	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-	public void setEmpName(String empName) {
-		this.empName = empName;
-	}
+	@Column(name = "empname",length = 30)
+	private String name;
 
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
+	@Column(length = 50,name = "empadd")
+	private String address;
 
-	public int getEmpId() {
-		return empId;
+	//@Column(length = 50)
+	private float salary;
+
+	public int getId() {
+		return id;
 	}
-	public String getEmpName() {
-		return empName;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public Double getSalary() {
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public float getSalary() {
 		return salary;
 	}
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
+	public Employee(int id, String name, String address, float salary) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.salary = salary;
+	}
+	public Employee() {
+		super();
 
+	}
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ","
-				+ " empName=" + empName + ", salary=" + salary + "]";
+		return "Employee [id=" + id + ", name=" + name + ", address=" + address + ", salary=" + salary + "]";
 	}
 
-	public void display() {
-		
-		
-	}
-	
 
-}
+	}
+
+
