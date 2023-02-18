@@ -56,7 +56,7 @@ public class Demo {
 			obj.displayData();
 			
 		}
-		
+	
 		
 	}
 
